@@ -15,7 +15,11 @@
 
 
 for testfile in $(ls tests/*.in); do
-  echo Testing $* $testfile
+  echo -e "Testing $* $testfile\n"
   expectation=$(echo $testfile | sed 's/\.in/\.out/')
-  diff <($* < $testfile) $expectation && echo 'Pass'
+  (
+    diff <($* < $testfile) $expectation &&
+    echo '# Pass #'
+  ) || echo -e '\n# Fail #'
+  echo -e "\n\n\n"
 done
