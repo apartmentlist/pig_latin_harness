@@ -27,30 +27,6 @@ $ translate.py < english.txt
 # => anslatortray!
 ```
 
-### Example
-
-```ruby
-# pig_latin.rb
-#!/usr/bin/env ruby
-
-module PigLatin
-  def self.translate(string)
-    string.gsub(/\w+/) do |word|
-      word.sub(/^(y|[^aeioquy]*(?:qu)?)(.*)/i) do
-        "#{$2}#{$1}#{$1 == '' ? 'w' : ''}ay"
-      end.tap { |w| w.capitalize! if word =~ /^[A-Z]/ }
-    end
-  end
-end
-
-puts PigLatin.translate(ARGF.read)
-```
-
-```bash
-chmod 700 pig_latin.rb
-./harness.sh ./pig_latin.rb
-```
-
 ### Successful output
 
 When the program successfully translates all test input, you will see the following printed out
